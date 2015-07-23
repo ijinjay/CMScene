@@ -16,6 +16,13 @@
 		888ABF241B55F04500280719 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 888ABF221B55F04500280719 /* LaunchScreen.storyboard */; };
 		888ABF2F1B55F04600280719 /* CMSceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 888ABF2E1B55F04600280719 /* CMSceneTests.m */; };
 		888ABF3A1B55F04600280719 /* CMSceneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 888ABF391B55F04600280719 /* CMSceneUITests.m */; };
+		88D03D4D1B6090D2002AD991 /* Wally.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D03D481B6090D2002AD991 /* Wally.scnassets */; };
+		88D03D4E1B6090D2002AD991 /* Baymax.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D03D491B6090D2002AD991 /* Baymax.scnassets */; };
+		88D03D4F1B6090D2002AD991 /* Baymax2.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D03D4A1B6090D2002AD991 /* Baymax2.scnassets */; };
+		88D03D501B6090D2002AD991 /* Lnuyasha.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D03D4B1B6090D2002AD991 /* Lnuyasha.scnassets */; };
+		88D03D521B60ACBC002AD991 /* SpongeBob.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D03D511B60ACBC002AD991 /* SpongeBob.scnassets */; };
+		88FB78E41B5F76DD0073B011 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88FB78E31B5F76DD0073B011 /* AVFoundation.framework */; };
+		88FBABAA1B57418D00C75E1C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88FBABA91B57418D00C75E1C /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,13 @@
 		888ABF351B55F04600280719 /* CMSceneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CMSceneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		888ABF391B55F04600280719 /* CMSceneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMSceneUITests.m; sourceTree = "<group>"; };
 		888ABF3B1B55F04600280719 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88D03D481B6090D2002AD991 /* Wally.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Wally.scnassets; sourceTree = "<group>"; };
+		88D03D491B6090D2002AD991 /* Baymax.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Baymax.scnassets; sourceTree = "<group>"; };
+		88D03D4A1B6090D2002AD991 /* Baymax2.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Baymax2.scnassets; sourceTree = "<group>"; };
+		88D03D4B1B6090D2002AD991 /* Lnuyasha.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Lnuyasha.scnassets; sourceTree = "<group>"; };
+		88D03D511B60ACBC002AD991 /* SpongeBob.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SpongeBob.scnassets; sourceTree = "<group>"; };
+		88FB78E31B5F76DD0073B011 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		88FBABA91B57418D00C75E1C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88FB78E41B5F76DD0073B011 /* AVFoundation.framework in Frameworks */,
+				88FBABAA1B57418D00C75E1C /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +99,8 @@
 		888ABF061B55F04500280719 = {
 			isa = PBXGroup;
 			children = (
+				88FB78E31B5F76DD0073B011 /* AVFoundation.framework */,
+				88FBABA91B57418D00C75E1C /* CoreMotion.framework */,
 				888ABF111B55F04500280719 /* CMScene */,
 				888ABF2D1B55F04600280719 /* CMSceneTests */,
 				888ABF381B55F04600280719 /* CMSceneUITests */,
@@ -103,6 +121,11 @@
 		888ABF111B55F04500280719 /* CMScene */ = {
 			isa = PBXGroup;
 			children = (
+				88D03D511B60ACBC002AD991 /* SpongeBob.scnassets */,
+				88D03D481B6090D2002AD991 /* Wally.scnassets */,
+				88D03D491B6090D2002AD991 /* Baymax.scnassets */,
+				88D03D4A1B6090D2002AD991 /* Baymax2.scnassets */,
+				88D03D4B1B6090D2002AD991 /* Lnuyasha.scnassets */,
 				888ABF151B55F04500280719 /* AppDelegate.h */,
 				888ABF161B55F04500280719 /* AppDelegate.m */,
 				888ABF181B55F04500280719 /* art.scnassets */,
@@ -210,6 +233,7 @@
 				TargetAttributes = {
 					888ABF0E1B55F04500280719 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 6T55Z5MKLS;
 					};
 					888ABF291B55F04500280719 = {
 						CreatedOnToolsVersion = 7.0;
@@ -247,9 +271,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				888ABF191B55F04500280719 /* art.scnassets in Resources */,
+				88D03D501B6090D2002AD991 /* Lnuyasha.scnassets in Resources */,
+				88D03D4F1B6090D2002AD991 /* Baymax2.scnassets in Resources */,
+				88D03D521B60ACBC002AD991 /* SpongeBob.scnassets in Resources */,
 				888ABF241B55F04500280719 /* LaunchScreen.storyboard in Resources */,
 				888ABF211B55F04500280719 /* Assets.xcassets in Resources */,
 				888ABF1F1B55F04500280719 /* Main.storyboard in Resources */,
+				88D03D4D1B6090D2002AD991 /* Wally.scnassets in Resources */,
+				88D03D4E1B6090D2002AD991 /* Baymax.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CMScene/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JinJay.CMScene;
@@ -428,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CMScene/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JinJay.CMScene;
@@ -502,6 +533,7 @@
 				888ABF401B55F04600280719 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		888ABF411B55F04600280719 /* Build configuration list for PBXNativeTarget "CMSceneTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +542,7 @@
 				888ABF431B55F04600280719 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		888ABF441B55F04600280719 /* Build configuration list for PBXNativeTarget "CMSceneUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +551,7 @@
 				888ABF461B55F04600280719 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
