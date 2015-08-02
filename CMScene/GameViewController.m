@@ -12,6 +12,9 @@
 
 @import GLKit;
 
+static NSTimeInterval timeInterval = 0.05;
+//static NSTimeInterval sleepTime = 1.0;
+
 @interface GameViewController ()
 
 @property (retain, nonatomic)AVCaptureSession *captureSession;
@@ -78,6 +81,7 @@
     // retrieve the ship node
     SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
     ship.position = SCNVector3Make(0, 0, -15);
+    [ship runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
     
     [self _addNode2Scene:scene at:SCNVector3Make(0, -5, 15) withAssets:@"SpongeBob.scnassets/SpongeBob.dae" andNode:@"root" andScale:10 andRotation:SCNMatrix4MakeRotation(M_PI, 0, 1, 0)];
     [self _addNode2Scene:scene at:SCNVector3Make(0, 15, 0) withAssets:@"Wally.scnassets/Wally.dae" andNode:@"total" andScale:0.1 andRotation:SCNMatrix4MakeRotation(M_PI_2, 0, 0, 0)];
@@ -100,12 +104,15 @@
     [super viewDidLoad];
     [self initCameraPreviewLayer];
     [self initSceneView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commonInit) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdate) name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
 - (void)_addNode2Scene:(SCNScene *)scene at:(SCNVector3)pos withAssets:(NSString *)assets andNode:(NSString *)node andScale:(float) scale andRotation:(SCNMatrix4)rotation{
     SCNNode *t = [[[SCNScene sceneNamed:assets] rootNode] childNodeWithName:node recursively:YES];
     SCNMatrix4 scaleMatrix = SCNMatrix4MakeScale(scale, scale, scale);
     t.transform = SCNMatrix4Mult(SCNMatrix4Mult(rotation, scaleMatrix), SCNMatrix4MakeTranslation(pos.x, pos.y, pos.z));
+    [t runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
     [scene.rootNode addChildNode:t];
 }
 
@@ -123,22 +130,12 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-// MARK: Appear
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self commonInit];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self stopUpdate];
-}
-
 // MARK: CoreMotion
 - (void)commonInit{
+    NSLog(@"start common init");
     CMMotionManager *manager = [(AppDelegate *)[[UIApplication sharedApplication] delegate] sharedManager];
     if (manager.deviceMotionAvailable && ([CMMotionManager availableAttitudeReferenceFrames] & CMAttitudeReferenceFrameXTrueNorthZVertical)) {
-        [manager setDeviceMotionUpdateInterval:0.01];
+        [manager setDeviceMotionUpdateInterval:timeInterval];
         [manager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXTrueNorthZVertical toQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion * __nullable motion, NSError * __nullable error) {
             if (error == nil) {
                 CMRotationMatrix m3 = motion.attitude.rotationMatrix;
@@ -155,14 +152,11 @@
 }
 
 - (void)stopUpdate{
+    NSLog(@"enter background");
     CMMotionManager *manager = [(AppDelegate *)[[UIApplication sharedApplication] delegate] sharedManager];
     if (manager.isDeviceMotionActive) {
+        NSLog(@"stop device motion updates");
         [manager stopDeviceMotionUpdates];
     }
-}
-
-- (void)refreshFrame:(id)sender {
-    [self stopUpdate];
-    [self commonInit];
 }
 @end
