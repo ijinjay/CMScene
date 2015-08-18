@@ -17,22 +17,26 @@ static NSTimeInterval timeInterval = 0.05;
 
 @interface GameViewController ()
 
-@property (retain, nonatomic)AVCaptureSession *captureSession;
-@property (retain, nonatomic)AVCaptureVideoPreviewLayer *videoPreviewLayer;
-@property (retain, nonatomic)SCNNode *camera;
-@property (retain, nonatomic)SCNView *scnView;
+@property (retain, nonatomic) AVCaptureSession           *captureSession;
+@property (retain, nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer;
+@property (retain, nonatomic) SCNNode                    *camera;
+@property (retain, nonatomic) SCNView                    *scnView;
+
 @end
 
 @implementation GameViewController
 
+/**
+ *  初始化摄像机背景层，居中显示
+ */
 - (void)initCameraPreviewLayer {
     // capture video as background
-    _captureSession = [[AVCaptureSession alloc] init];
+    _captureSession                               = [[AVCaptureSession alloc] init];
     AVCaptureVideoPreviewLayer *videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
-    videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    
-    AVCaptureDevice* videoDevice = nil;
-    NSArray* devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    videoPreviewLayer.videoGravity                = AVLayerVideoGravityResizeAspectFill;
+
+    AVCaptureDevice* videoDevice                  = nil;
+    NSArray* devices                              = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice* device in devices) {
         if ([device position] == AVCaptureDevicePositionBack) {
             videoDevice = device;
@@ -58,23 +62,23 @@ static NSTimeInterval timeInterval = 0.05;
 
 - (void)initSceneView {
     // create a new scene
-    SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/ship.dae"];
+    SCNScene *scene  = [SCNScene sceneNamed:@"art.scnassets/ship.dae"];
     // create and add a camera to the scene
-    _camera = [SCNNode node];
-    _camera.camera = [SCNCamera camera];
+    _camera          = [SCNNode node];
+    _camera.camera   = [SCNCamera camera];
     [scene.rootNode addChildNode:_camera];
     // place the camera
     _camera.position = SCNVector3Make(0, 0, 0);
     // create and add a light to the scene
-    SCNNode *lightNode = [SCNNode node];
-    lightNode.light = [SCNLight light];
+    SCNNode *lightNode   = [SCNNode node];
+    lightNode.light      = [SCNLight light];
     lightNode.light.type = SCNLightTypeOmni;
-    lightNode.position = SCNVector3Make(0, 10, 10);
+    lightNode.position   = SCNVector3Make(0, 10, 10);
     [scene.rootNode addChildNode:lightNode];
     // create and add an ambient light to the scene
-    SCNNode *ambientLightNode = [SCNNode node];
-    ambientLightNode.light = [SCNLight light];
-    ambientLightNode.light.type = SCNLightTypeAmbient;
+    SCNNode *ambientLightNode    = [SCNNode node];
+    ambientLightNode.light       = [SCNLight light];
+    ambientLightNode.light.type  = SCNLightTypeAmbient;
     ambientLightNode.light.color = [UIColor darkGrayColor];
     [scene.rootNode addChildNode:ambientLightNode];
     
@@ -90,9 +94,9 @@ static NSTimeInterval timeInterval = 0.05;
     [self _addNode2Scene:scene at:SCNVector3Make(-15, -5, 0) withAssets:@"Lnuyasha.scnassets/Lnuyasha.dae" andNode:@"root" andScale:10 andRotation:SCNMatrix4MakeRotation(M_PI_2, 0, 1, 0)];
     
     // retrieve the SCNView
-    _scnView = [[SCNView alloc] initWithFrame:self.view.bounds];
+    _scnView                 = [[SCNView alloc] initWithFrame:self.view.bounds];
     // set the scene to the view
-    _scnView.scene = scene;
+    _scnView.scene           = scene;
     // show statistics such as fps and timing information
     _scnView.showsStatistics = YES;
     // configure the view
@@ -109,9 +113,9 @@ static NSTimeInterval timeInterval = 0.05;
 }
 
 - (void)_addNode2Scene:(SCNScene *)scene at:(SCNVector3)pos withAssets:(NSString *)assets andNode:(NSString *)node andScale:(float) scale andRotation:(SCNMatrix4)rotation{
-    SCNNode *t = [[[SCNScene sceneNamed:assets] rootNode] childNodeWithName:node recursively:YES];
+    SCNNode *t             = [[[SCNScene sceneNamed:assets] rootNode] childNodeWithName:node recursively:YES];
     SCNMatrix4 scaleMatrix = SCNMatrix4MakeScale(scale, scale, scale);
-    t.transform = SCNMatrix4Mult(SCNMatrix4Mult(rotation, scaleMatrix), SCNMatrix4MakeTranslation(pos.x, pos.y, pos.z));
+    t.transform            = SCNMatrix4Mult(SCNMatrix4Mult(rotation, scaleMatrix), SCNMatrix4MakeTranslation(pos.x, pos.y, pos.z));
     [t runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
     [scene.rootNode addChildNode:t];
 }
